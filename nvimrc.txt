@@ -4,7 +4,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-sensible'
 Plug 'scrooloose/nerdtree',  { 'on': 'NERDTreeToggle' }
 Plug 'kien/ctrlp.vim'
-Plug 'sickill/vim-monokai'
 Plug 'rking/ag.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-haml'
@@ -16,6 +15,9 @@ Plug 'kchmck/vim-coffee-script'
 Plug 'cakebaker/scss-syntax.vim'
 Plug 'ervandew/supertab'
 Plug 'tpope/vim-endwise'
+Plug 'isRuslan/vim-es6'
+Plug 'nvie/vim-flake8'
+Plug 'Valloric/YouCompleteMe'
 
 
 call plug#end()
@@ -105,3 +107,13 @@ cnoreabbrev W w
 
 " tired of pressing SHIFT ... ) :
 nnoremap ; :
+
+" Django setups
+
+" PEP 8
+autocmd FileType python map <buffer> ,pp :call Flake8()<CR>
+
+" python tabs
+autocmd FileType python set sw=4
+autocmd FileType python set ts=4
+autocmd FileType python set sts=4

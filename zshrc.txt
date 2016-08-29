@@ -45,7 +45,7 @@ ZSH_THEME="sunrise"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git python zsh-syntax-highlighting eb)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -85,23 +85,30 @@ bindkey "\e\e[D" backward-word
 bindkey "\e\e[C" forward-word
 
 function c {
-  str=""
+  local str=""
   for i in $@; do str+="$i "; done
   git commit -m "$str"
 }
 
+# Grep the current history. Shorthand for history | grep 'some text'
 function hrep {
-  str=""
+  local str=""
   for i in $@; do str+="$i "; done
   history | grep "${str%?}"
 }
 
+# Grep the current processes. Shorthand for ps -A | grep 'some text'
 function prep {
-  str=""
+  local str=""
   for i in $@; do str+="$i "; done
-  ps -A | grep "${str%?}"
-}
 
+  local result=""
+  result=$(ps -A | grep "${str%?}")
+  result=$(echo $result | sed '$d')
+  if ! [ -z $result ]; then
+    echo $result
+  fi
+}
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 source /Users/sergiu/.rvm/scripts/rvm
@@ -109,5 +116,21 @@ source /Users/sergiu/.rvm/scripts/rvm
 # exporting pg commands
 export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin
 
+# configurations required by nvm
 export NVM_DIR="/Users/sergiu/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# ssh stuff
+eval "$(ssh-agent -s)" > /dev/null
+ssh-add ~/.ssh/id_rsa 2> /dev/null
+
+source /usr/local/bin/virtualenvwrapper.sh
+
+# aws configuration
+export JAVA_HOME=$(/usr/libexec/java_home)
+export EC2_HOME=/usr/local/ec2/ec2-api-tools-1.7.5.1
+export PATH=$PATH:$EC2_HOME/bin
+export AWS_EB_PROFILE=new-prism
+
+# editor
+export EDITOR=vim
