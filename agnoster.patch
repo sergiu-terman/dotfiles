@@ -1,0 +1,49 @@
+diff --git a/themes/agnoster.zsh-theme b/themes/agnoster.zsh-theme
+index 0edb773a..28570a3e 100644
+--- a/themes/agnoster.zsh-theme
++++ b/themes/agnoster.zsh-theme
+@@ -88,9 +88,11 @@ prompt_end() {
+ 
+ # Context: user@hostname (who am I and where am I)
+ prompt_context() {
+-  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+-    prompt_segment black default "%(!.%{%F{yellow}%}.)%n@%m"
+-  fi
++  echo "" > /dev/null
++
++  # if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
++  #   prompt_segment black default "%(!.%{%F{yellow}%}.)%n@%m"
++  # fi
+ }
+ 
+ # Git: branch/detached head, dirty status
+@@ -199,7 +201,28 @@ prompt_hg() {
+ 
+ # Dir: current working directory
+ prompt_dir() {
+-  prompt_segment blue $CURRENT_FG '%~'
++  local pwd=$(pwd)
++  if [[ $pwd == $HOME* ]]; then
++    pwd=$(echo $pwd | sed "s#$HOME#~#g")
++  fi
++
++  local last_bit="$(basename $pwd)"
++  local lefter_dir="$(dirname $pwd)"
++  local first_bit="$(basename $lefter_dir)"
++
++  local slashes_count=$(echo "${lefter_dir}" | awk -F "/" '{print NF-1}')
++  if [ $slashes_count = "1" ]; then
++    first_bit=$lefter_dir
++  fi
++
++  local the_dir=$(echo "$first_bit/$last_bit" | sed "s#//*#/#g")
++
++  if [ $the_dir = "./~" ]; then
++    the_dir="~"
++  fi
++
++  prompt_segment blue $CURRENT_FG $(echo $the_dir | awk '{$0=$1};1')
++  # prompt_segment blue $CURRENT_FG "%~"
+ }
+ 
+ # Virtualenv: current working virtualenv
