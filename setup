@@ -1,0 +1,58 @@
+#!/bin/bash -e
+
+
+function init_backup() {
+  echo "Will be backing up files at $HOME/.setup_back"
+  rm -rf "$HOME/.setup_back"
+  mkdir -p "$HOME/.setup_back"
+}
+
+function backup_and_rm() {
+  local file="$1"
+
+  if [ -f "$file" ] || [ -L "$file" ]; then
+    echo "Backing up file $file at $HOME/.setup_back"
+    cp -R "$file" "$HOME/.setup_back/"
+    rm -rf "$file"
+  fi
+}
+
+function setup_symlinks() {
+
+  # vim + neovim
+  local nvimdir="$HOME/.config/nvim"
+  local nvimrc="$nvimdir/init.vim"
+
+  mkdir -p "$nvimdir"
+
+  backup_and_rm "$nvimrc"
+  backup_and_rm "$HOME/.vimrc"
+
+  ln -s "$PWD/nvimrc.txt" "$nvimrc"
+  ln -s "$nvimrc" "$HOME/.vimrc"
+
+  # tmux
+  backup_and_rm "$HOME/.tmux.conf"
+  ln -s "$PWD/tmux.conf" "$HOME/.tmux.conf"
+
+  # bash aliases
+  backup_and_rm "$HOME/.bash_aliases"
+  ln -s "$PWD/bash_aliases.txt" "$HOME/.bash_aliases"
+
+  # zsh config
+  backup_and_rm "$HOME/.zshrc_extra"
+  ln -s "$PWD/zshrc.txt" "$HOME/.zshrc_extra"
+  echo 'source $HOME/.zshrc_extra' >> "$HOME/.zshrc"
+
+  # global gitconfig
+  backup_and_rm "$HOME/.gitconfig"
+  ln -s "$PWD/gitconfig.txt" "$HOME/.gitconfig"
+}
+
+
+function main() {
+  init_backup
+  setup_symlinks
+}
+
+main
