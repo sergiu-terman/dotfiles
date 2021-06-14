@@ -33,3 +33,24 @@ function prep {
     echo $result
   fi
 }
+
+function drm {
+  docker ps -a --format '{{.ID}}' | xargs docker rm -f
+}
+
+function dps {
+  docker ps -a
+}
+
+function d {
+  docker exec -ti "$1" bash
+}
+
+function drmi {
+  drm
+  docker images | grep '<none>' | awk '{print $3}' | xargs docker image rm
+}
+
+function dsu {
+  docker exec -ti -u 0 "$1" bash
+}
