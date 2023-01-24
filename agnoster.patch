@@ -1,18 +1,23 @@
-diff --git a/themes/agnoster.zsh-theme b/themes/agnoster.zsh-theme
-index 88854ec..df86db6 100644
---- a/themes/agnoster.zsh-theme
-+++ b/themes/agnoster.zsh-theme
-@@ -88,9 +88,10 @@ prompt_end() {
- 
- # Context: user@hostname (who am I and where am I)
- prompt_context() {
--  if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
--    prompt_segment black default "%(!.%{%F{yellow}%}.)%n@%m"
--  fi
-+  # if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-+  #   prompt_segment black default "%(!.%{%F{yellow}%}.)%n@%m"
-+  # fi
-+  echo "" > devnull
- }
- 
- # Git: branch/detached head, dirty status
+diff --git a/agnoster.patch b/agnoster.patch
+index 9dd9ec1..e69de29 100644
+--- a/agnoster.patch
++++ b/agnoster.patch
+@@ -1,18 +0,0 @@
+-diff --git a/themes/agnoster.zsh-theme b/themes/agnoster.zsh-theme
+-index 88854ec..df86db6 100644
+---- a/themes/agnoster.zsh-theme
+-+++ b/themes/agnoster.zsh-theme
+-@@ -88,9 +88,10 @@ prompt_end() {
+- 
+- # Context: user@hostname (who am I and where am I)
+- prompt_context() {
+--  if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+--    prompt_segment black default "%(!.%{%F{yellow}%}.)%n@%m"
+--  fi
+-+  # if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+-+  #   prompt_segment black default "%(!.%{%F{yellow}%}.)%n@%m"
+-+  # fi
+-+  echo "" > devnull
+- }
+- 
+- # Git: branch/detached head, dirty status
