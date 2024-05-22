@@ -27,7 +27,7 @@ Plug 'hhff/SpacegrayEighties.vim'
 call plug#end()
 
 
-set clipboard=unnamed
+" set clipboard=unnamed
 set ignorecase
 set number
 colorscheme SpacegrayEighties
