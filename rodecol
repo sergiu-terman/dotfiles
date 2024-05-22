@@ -1,0 +1,67 @@
+// Keyboard layouts for the United States of America.
+
+// Colemak symbols for xkb on X.Org Server 7.x
+// 2006-01-01 Shai Coleman, http://colemak.com/
+
+partial alphanumeric_keys
+xkb_symbols "basic" {
+
+    name[Group1]= "English (Rodecol)";
+
+    key <TLDE> { [        grave,   asciitilde,      dead_tilde,       asciitilde ] };
+    key <AE01> { [            1,       exclam,      exclamdown,      onesuperior ] };
+    key <AE02> { [            2,           at,       masculine,      twosuperior ] };
+    key <AE03> { [            3,   numbersign,     ordfeminine,    threesuperior ] };
+    key <AE04> { [            4,       dollar,            cent,         sterling ] };
+    key <AE05> { [            5,      percent,        EuroSign,              yen ] };
+    key <AE06> { [            6,  asciicircum,         hstroke,          Hstroke ] };
+    key <AE07> { [            7,    ampersand,             eth,              ETH ] };
+    key <AE08> { [            8,     asterisk,           thorn,            THORN ] };
+    key <AE09> { [            9,    parenleft,  leftsinglequotemark,  leftdoublequotemark ] };
+    key <AE10> { [            0,   parenright, rightsinglequotemark,  rightdoublequotemark ] };
+    key <AE11> { [        minus,   underscore,          endash,           emdash ] };
+    key <AE12> { [        equal,         plus,        multiply,         division ] };
+
+    key <AD01> { [            q,            Q,      adiaeresis,       Adiaeresis ] };
+    key <AD02> { [            w,            W,          aacute,           Aacute ] }; // á Á
+    key <AD03> { [            f,            F,          agrave,           Agrave ] }; // à À
+    key <AD04> { [            p,            P,           U00DF,            U1E9E ] }; // ß ẞ
+    key <AD05> { [            g,            G,     dead_ogonek,       asciitilde ] };
+    key <AD06> { [            j,            J,         dstroke,          Dstroke ] };
+    key <AD07> { [            l,            L,     ucircumflex,      Ucircumflex ] }; // û Û
+    key <AD08> { [            u,            U,      udiaeresis,       Udiaeresis ] }; // ü Ü
+    key <AD09> { [            y,            Y,          uacute,           Uacute ] }; // ú Ú
+    key <AD10> { [    semicolon,        colon,          ugrave,           Ugrave ] }; // ù Ù
+    key <AD11> { [  bracketleft,    braceleft,   guillemotleft,        0x1002039 ] };
+    key <AD12> { [ bracketright,   braceright,  guillemotright,        0x100203a ] };
+    key <BKSL> { [    backslash,          bar,          oacute,            Oacute] }; // ó Ó
+
+    key <AC01> { [            a,            A,          abreve,           Abreve ] }; // ă Ă
+    key <AC02> { [            r,            R,     acircumflex,      Acircumflex ] }; // â Â
+    key <AC03> { [            s,            S,           U0219,            U0218 ] }; // ș Ș
+    key <AC04> { [            t,            T,           U021b,            U021a ] }; // ț Ț
+    key <AC05> { [            d,            D,  dead_diaeresis,       asciitilde ] };
+    key <AC06> { [            h,            H,      dead_caron,       asciitilde ] };
+    key <AC07> { [            n,            N,          ntilde,           Ntilde ] }; // ñ Ñ
+    key <AC08> { [            e,            E,     ecircumflex,      Ecircumflex ] }; // ê Ê
+    key <AC09> { [            i,            I,     icircumflex,      Icircumflex ] }; // î Î
+    key <AC10> { [            o,            O,      odiaeresis,       Odiaeresis ] }; // ö Ö
+    key <AC11> { [   apostrophe,     quotedbl,     ocircumflex,      Ocircumflex ] }; // ô Ô
+
+    key <AB01> { [            z,            Z,              ae,               AE ] };
+    key <AB02> { [            x,            X, dead_circumflex,       asciitilde ] };
+    key <AB03> { [            c,            C,        ccedilla,         Ccedilla ] }; // ç Ç
+    key <AB04> { [            v,            V,              oe,               OE ] }; // œ Œ
+    key <AB05> { [            b,            B,      ediaeresis,       Ediaeresis ] }; // ë Ë
+    key <AB06> { [            k,            K,          eacute,           Eacute ] }; // é É
+    key <AB07> { [            m,            M,          egrave,           Egrave ] }; // è È
+    key <AB08> { [        comma,         less,          iacute,           Iacute ] }; // í Í
+    key <AB09> { [       period,      greater,      idiaeresis,       Idiaeresis ] }; // ï Ï
+    key <AB10> { [        slash,     question,    questiondown,       asciitilde ] };
+
+    key <CAPS> { [    BackSpace,    BackSpace,       BackSpace,        BackSpace ] };
+    key <LSGT> { [        minus,   underscore,          endash,           emdash ] };
+    key <SPCE> { [        space,        space,           space,     nobreakspace ] };
+
+    include "level3(ralt_switch)"
+};
