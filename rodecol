@@ -1,12 +1,9 @@
-// Keyboard layouts for the United States of America.
-
-// Colemak symbols for xkb on X.Org Server 7.x
-// 2006-01-01 Shai Coleman, http://colemak.com/
+// Colemak layout plus adding the following symbols: RO, DE, FR, ES
 
 partial alphanumeric_keys
 xkb_symbols "basic" {
 
-    name[Group1]= "English (Rodecol)";
+    name[Group1]= "Rodecol";
 
     key <TLDE> { [        grave,   asciitilde,      dead_tilde,       asciitilde ] };
     key <AE01> { [            1,       exclam,      exclamdown,      onesuperior ] };
